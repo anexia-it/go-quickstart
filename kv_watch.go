@@ -2,6 +2,9 @@ package quickstart
 
 import (
 	"context"
+	"net/url"
+	"time"
+
 	"github.com/hashicorp/consul/api"
 )
 
@@ -21,7 +24,7 @@ func (k KV) Watch(ctx context.Context, prefix string) (res chan *WatchResult) {
 		for {
 			// This loop is supposed to run until either the context is canceled or the
 			// consul API reports an error
-			opts := &api.QueryOption{
+			opts := &api.QueryOptions{
 				WaitIndex: currentIndex,
 				WaitTime:  time.Minute,
 			}
@@ -32,7 +35,7 @@ func (k KV) Watch(ctx context.Context, prefix string) (res chan *WatchResult) {
 			// Error may be nested in url.Error
 			if err != nil {
 				if urlErr, isUrlErr := err.(*url.Error); isUrlErr {
-					err = urlErr.Error
+					err = urlErr.Err
 				}
 			}
 
@@ -43,7 +46,7 @@ func (k KV) Watch(ctx context.Context, prefix string) (res chan *WatchResult) {
 
 			if err != nil {
 				// Report error and stop watching
-				result <- &WatchResult{
+				res <- &WatchResult{
 					Error: err,
 				}
 				return
@@ -62,7 +65,7 @@ func (k KV) Watch(ctx context.Context, prefix string) (res chan *WatchResult) {
 				}
 
 				// Write changed paiur to channel
-				result <- &WatchResult{
+				res <- &WatchResult{
 					Pair: kvPair,
 				}
 			}
