@@ -15,8 +15,8 @@ type Request struct {
 	TimeoutMillis uint `json:"timeout_ms"`
 }
 
-// String returns a string represenation of the request
-func (r Request) String() string {
+// ToString returns a string represenation of the request
+func (r Request) ToString() string {
 	timeoutDuration := time.Millisecond * time.Duration(r.TimeoutMillis)
 	return fmt.Sprintf("url=%s, timeout=%s", r.URL, timeoutDuration)
 }
