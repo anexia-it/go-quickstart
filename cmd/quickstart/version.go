@@ -1,8 +1,8 @@
 package main
 
 import (
-	"go.uber.org/zap"
 	"github.com/spf13/cobra"
+	"go.uber.org/zap"
 
 	"github.com/anexia-it/go-quickstart"
 )
