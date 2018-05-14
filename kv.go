@@ -6,6 +6,7 @@ import (
 
 type KV struct {
 	consulKV *api.KV
+	client   *api.Client
 }
 
 // Get retrieves a KV key
@@ -49,6 +50,7 @@ func NewKV(address string) (k *KV, err error) {
 	}
 
 	k = &KV{
+		client:   c,
 		consulKV: c.KV(),
 	}
 	return
