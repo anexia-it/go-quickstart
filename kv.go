@@ -13,9 +13,10 @@ func (k KV) Get(key string) (data []byte, err error) {
 	var kvPair *api.KVPair
 	if kvPair, _, err = k.consulKV.Get(key, nil); err != nil {
 		return
-	}
+	} else if kvPair != nil {
 
-	data = kvPair.Value
+		data = kvPair.Value
+	}
 	return
 }
 
