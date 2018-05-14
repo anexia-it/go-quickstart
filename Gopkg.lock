@@ -2,10 +2,34 @@
 
 
 [[projects]]
+  name = "github.com/anexia-it/go-human"
+  packages = ["."]
+  revision = "4d3ccd5aa405a145accd846af9f99c79a5412050"
+  version = "v1.0.4"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/hashicorp/errwrap"
+  packages = ["."]
+  revision = "7554cd9344cec97297fa6649b055a8c98c2a1e55"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/hashicorp/go-multierror"
+  packages = ["."]
+  revision = "b7773ae218740a7be65057fc60b366a49b538a44"
+
+[[projects]]
   name = "github.com/inconshreveable/mousetrap"
   packages = ["."]
   revision = "76626ae9c91c4f2a10f34cad8ce83ea42c93bb75"
   version = "v1.0"
+
+[[projects]]
+  name = "github.com/speijnik/go-errortree"
+  packages = ["."]
+  revision = "0e43144ed81c301d06af750e2c61cbef95c5d4ec"
+  version = "v1.0.1"
 
 [[projects]]
   name = "github.com/spf13/cobra"
@@ -47,6 +71,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "5374a814b520e1b688ba2334ea84971179e773ecc397ccdea2cc924a26bcae84"
+  inputs-digest = "f4418a6d97420e9a0e694c3a93a08a0da689ef0b83bca94c700f62f048b50b6c"
   solver-name = "gps-cdcl"
   solver-version = 1
