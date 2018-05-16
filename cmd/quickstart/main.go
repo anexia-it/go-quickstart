@@ -1,7 +1,14 @@
 package main
 
-import quickstart "github.com/anexia-it/go-quickstart"
+import "github.com/spf13/cobra"
+
+// cmdRoot is the root of our command tree
+var cmdRoot = &cobra.Command{
+	Use:   "quickstart",
+	Short: "Go quickstart sample application",
+}
 
 func main() {
-	println("quickstart v" + quickstart.VersionString())
+	// cmdRoot.Execute acts as our entrypoint: call it
+	cmdRoot.Execute()
 }
