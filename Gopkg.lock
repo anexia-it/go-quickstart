@@ -56,6 +56,12 @@
   revision = "b8bc1bf767474819792c23f32d8286a45736f1c6"
 
 [[projects]]
+  name = "github.com/satori/go.uuid"
+  packages = ["."]
+  revision = "f58768cc1a7a7e77a3bd49e98cdd21419399b6a3"
+  version = "v1.2.0"
+
+[[projects]]
   name = "github.com/speijnik/go-errortree"
   packages = ["."]
   revision = "0e43144ed81c301d06af750e2c61cbef95c5d4ec"
@@ -101,6 +107,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "42b1e32c353e9f5f5b4778d03b3e6b981842fea2779e223aa635b05ba727569c"
+  inputs-digest = "2a5d49dad11247f4b86a3f955d52fcdfa41011860f1334938e95902d8c188db4"
   solver-name = "gps-cdcl"
   solver-version = 1
