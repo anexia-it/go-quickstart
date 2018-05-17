@@ -10,6 +10,9 @@ import (
 // WatchHandleFunc defines the callback function type used for watch callbacks
 type WatchHandleFunc func(kvPair *api.KVPair) error
 
+// WithLockFunc defines the callback function type used while holding a lock
+type WithLockFunc func() error
+
 // ConsulAPI represents a consul API client
 type ConsulAPI struct {
 	*api.Client
@@ -62,6 +65,29 @@ func (c *ConsulAPI) Watch(ctx context.Context, prefix string, fn WatchHandleFunc
 		currentIndex = meta.LastIndex
 	}
 
+	return
+}
+
+// WithLock executes the provided WithLockFunc while holding the lock for the given key
+func (c *ConsulAPI) WithLock(key string, fn WithLockFunc) (err error) {
+	var lk *api.Lock
+
+	// Obtain/create the lock key
+	if lk, err = c.LockKey("locks/" + key); err != nil {
+		return
+	}
+	// Ensure the lock is cleaned up when we leave this scope
+	defer lk.Destroy()
+
+	// Acquire the lock
+	if _, err = lk.Lock(nil); err != nil {
+		return
+	}
+	// Ensure we release the lock when leaving this scope
+	defer lk.Unlock()
+
+	// Call the provided function while we hold the lock
+	err = fn()
 	return
 }
 
